@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{9FFC31B0-F71D-4565-8A04-034AA06A3038}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Test", "src\Application.Test\Application.Test.csproj", "{839E3DD9-037F-48D2-98F5-03EE9FCF28E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Test", "test\Application.Test\Application.Test.csproj", "{839E3DD9-037F-48D2-98F5-03EE9FCF28E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{0978149A-4A39-464F-A569-F26142A18FAD}"
 EndProject
