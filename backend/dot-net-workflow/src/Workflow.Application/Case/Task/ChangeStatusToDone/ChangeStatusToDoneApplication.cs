@@ -1,5 +1,5 @@
 ﻿using Workflow.Domain.Case.Task.ChangeStatusToDone;
-using Workflow.Domain.Case.Task.GetTask;
+using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
 using Rom.Result.Domain;
@@ -17,7 +17,7 @@ namespace Workflow.Application.Case.Task.ChangeStatusToDone
             _getTaskById = getTaskById ?? throw new ArgumentNullException(nameof(getTaskById));
         }
 
-        public async Task<ResultDetail<TaskDomain>> Execute(Guid id)
+        public async Task<ResultDetail<TaskDomain>> ExecuteAsync(Guid id)
         {
             // Validate the input id
             if (id == Guid.Empty)

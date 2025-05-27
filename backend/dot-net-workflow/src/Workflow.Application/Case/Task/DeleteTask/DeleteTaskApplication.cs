@@ -12,7 +12,7 @@ namespace Workflow.Application.Case.Task.DeleteTask
             _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
-        public async Task<ResultDetail<bool>> Execute(Guid id)
+        public async Task<ResultDetail<bool>> ExecuteAsync(Guid id)
         {
             // Validate the Id
             if (id == Guid.Empty)

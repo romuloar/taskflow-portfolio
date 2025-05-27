@@ -1,7 +1,7 @@
 ﻿using Workflow.Domain.Case.Task.DeleteTask;
 using Workflow.Domain.Entities.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Repository;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Rom.Result.Domain;
 using Rom.Result.Extensions;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
 {
     public class DeleteTaskProvider : BaseRepository<TaskDomain>, IDeleteTaskProvider
     {

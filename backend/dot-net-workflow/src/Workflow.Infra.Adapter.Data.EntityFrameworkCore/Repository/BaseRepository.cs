@@ -1,7 +1,7 @@
-﻿using Infra.Adapter.Data.EntityFrameworkCore.Context;
+﻿using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Repository
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Repository
 {
     public class BaseRepository<TEntity> where TEntity : class
     {

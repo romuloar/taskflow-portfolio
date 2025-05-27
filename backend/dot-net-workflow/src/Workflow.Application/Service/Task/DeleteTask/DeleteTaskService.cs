@@ -1,5 +1,5 @@
 ﻿using Workflow.Application.Case.Task.DeleteTask;
-using Workflow.Application.Case.Task.GetTask;
+using Workflow.Application.Case.Task.GetTaskById;
 using Workflow.Application.Case.TaskNotification.NotifyTaskDeleted;
 using Workflow.Domain.Case.TaskNotification.NotifyTaskDeleted;
 using Workflow.Domain.Generic.Task;
@@ -11,12 +11,12 @@ namespace Application.Service.Task.DeleteTask
     public class DeleteTaskService : IDeleteTaskService
     {
         private readonly IDeleteTaskApplication _deleteTaskApplication;
-        private readonly IGetTaskApplication _getTaskApplication;
+        private readonly IGetTaskByIdApplication _getTaskApplication;
         private readonly INotifyTaskDeletedApplication _notifyTaskDeletedApplication;
 
         public DeleteTaskService(
             IDeleteTaskApplication deleteTaskApplication,
-            IGetTaskApplication getTaskApplication,
+            IGetTaskByIdApplication getTaskApplication,
             INotifyTaskDeletedApplication notifyTaskDeletedApplication)
         {
             _deleteTaskApplication = deleteTaskApplication ?? throw new ArgumentNullException(nameof(deleteTaskApplication));
@@ -32,7 +32,7 @@ namespace Application.Service.Task.DeleteTask
                 return ResultDetailExtensions.GetError<bool>("Task not found");
 
             // Delete the task
-            var deleteResult = await _deleteTaskApplication.Execute(id);
+            var deleteResult = await _deleteTaskApplication.ExecuteAsync(id);
             if (!deleteResult.IsSuccess)
                 return deleteResult;
 

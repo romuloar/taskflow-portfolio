@@ -1,6 +1,6 @@
 ﻿using Workflow.Application.Case.Task.ChangeStatusToImpediment;
 using Workflow.Domain.Case.Task.ChangeStatusToImpediment;
-using Workflow.Domain.Case.Task.GetTask;
+using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
 using Moq;
@@ -25,7 +25,7 @@ namespace Application.Test.Case.TaskTest
         [Fact]
         public async Task Execute_ShouldReturnError_WhenIdIsEmpty()
         {
-            var result = await _application.Execute(Guid.Empty);
+            var result = await _application.ExecuteAsync(Guid.Empty);
             Assert.False(result.IsSuccess);
             Assert.Equal("Invalid id", result.Message);
         }
@@ -38,7 +38,7 @@ namespace Application.Test.Case.TaskTest
                 .Setup(p => p.GetTaskByIdAsync(id))
                 .ReturnsAsync((ResultDetail<TaskDomain>)null);
 
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             Assert.False(result.IsSuccess);
             Assert.Equal("Task not found", result.Message);
@@ -55,7 +55,7 @@ namespace Application.Test.Case.TaskTest
                 .Setup(p => p.GetTaskByIdAsync(id))
                 .ReturnsAsync(taskResult);
 
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             Assert.False(result.IsSuccess);
             Assert.Equal("Task already impediment", result.Message);
@@ -77,7 +77,7 @@ namespace Application.Test.Case.TaskTest
                 .Setup(p => p.ChangeStatusToImpedimentAsync(id))
                 .ReturnsAsync(expectedResult);
 
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             Assert.True(result.IsSuccess);
             Assert.Equal(expectedResult.ResultData, result.ResultData);

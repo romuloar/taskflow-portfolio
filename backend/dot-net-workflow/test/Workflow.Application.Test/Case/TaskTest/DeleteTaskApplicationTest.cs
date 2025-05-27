@@ -20,7 +20,7 @@ namespace Application.Test.Case.TaskTest
         public async Task Execute_ShouldReturnError_WhenIdIsEmpty()
         {
             // Act
-            var result = await _application.Execute(Guid.Empty);
+            var result = await _application.ExecuteAsync(Guid.Empty);
 
             // Assert
             Assert.False(result.IsSuccess);
@@ -39,7 +39,7 @@ namespace Application.Test.Case.TaskTest
                 .ReturnsAsync(expectedResult);
 
             // Act
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             // Assert
             Assert.True(result.IsSuccess);

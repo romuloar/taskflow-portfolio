@@ -6,6 +6,6 @@ namespace Workflow.Application.Case.Task.ChangeStatusToDone
 {
     public interface IChangeStatusToDoneApplication
     {
-        Task<ResultDetail<TaskDomain>> Execute(Guid id);
+        Task<ResultDetail<TaskDomain>> ExecuteAsync(Guid id);
     }
 }

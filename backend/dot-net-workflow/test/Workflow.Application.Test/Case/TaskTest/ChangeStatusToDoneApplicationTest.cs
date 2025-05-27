@@ -1,6 +1,6 @@
 ﻿using Workflow.Application.Case.Task.ChangeStatusToDone;
 using Workflow.Domain.Case.Task.ChangeStatusToDone;
-using Workflow.Domain.Case.Task.GetTask;
+using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
 using Moq;
@@ -26,7 +26,7 @@ namespace Application.Test.Case.TaskTest
         public async Task Execute_ShouldReturnError_WhenIdIsEmpty()
         {
             // Act
-            var result = await _application.Execute(Guid.Empty);
+            var result = await _application.ExecuteAsync(Guid.Empty);
 
             // Assert
             Assert.False(result.IsSuccess);
@@ -43,7 +43,7 @@ namespace Application.Test.Case.TaskTest
                 .ReturnsAsync((ResultDetail<TaskDomain>)null);
 
             // Act
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             // Assert
             Assert.False(result.IsSuccess);
@@ -63,7 +63,7 @@ namespace Application.Test.Case.TaskTest
                 .ReturnsAsync(taskResult);
 
             // Act
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             // Assert
             Assert.False(result.IsSuccess);
@@ -88,7 +88,7 @@ namespace Application.Test.Case.TaskTest
                 .ReturnsAsync(expectedResult);
 
             // Act
-            var result = await _application.Execute(id);
+            var result = await _application.ExecuteAsync(id);
 
             // Assert
             Assert.True(result.IsSuccess);

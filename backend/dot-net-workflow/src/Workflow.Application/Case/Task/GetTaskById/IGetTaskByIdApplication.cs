@@ -1,9 +1,9 @@
 ﻿using Workflow.Domain.Entities.Task;
 using Rom.Result.Domain;
 
-namespace Workflow.Application.Case.Task.GetTask
+namespace Workflow.Application.Case.Task.GetTaskById
 {
-    public interface IGetTaskApplication
+    public interface IGetTaskByIdApplication
     {
         Task<ResultDetail<TaskDomain>> Execute(Guid id);
     }

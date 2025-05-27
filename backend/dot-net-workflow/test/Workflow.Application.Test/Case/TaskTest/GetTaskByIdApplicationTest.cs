@@ -1,5 +1,5 @@
-﻿using Workflow.Application.Case.Task.GetTask;
-using Workflow.Domain.Case.Task.GetTask;
+﻿using Workflow.Application.Case.Task.GetTaskById;
+using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
 using Moq;
@@ -8,15 +8,15 @@ using Rom.Result.Extensions;
 
 namespace Application.Test.Case.TaskTest
 {
-    public class GetTaskApplicationTest
+    public class GetTaskByIdApplicationTest
     {
         private readonly Mock<IGetTaskByIdProvider> _providerMock;
-        private readonly GetTaskApplication _application;
+        private readonly GetTaskByIdApplication _application;
 
-        public GetTaskApplicationTest()
+        public GetTaskByIdApplicationTest()
         {
             _providerMock = new Mock<IGetTaskByIdProvider>();
-            _application = new GetTaskApplication(_providerMock.Object);
+            _application = new GetTaskByIdApplication(_providerMock.Object);
         }
 
         [Fact]

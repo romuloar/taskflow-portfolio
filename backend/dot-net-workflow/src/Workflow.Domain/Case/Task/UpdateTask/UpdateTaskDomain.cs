@@ -2,9 +2,9 @@
 using Rom.Domain.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace Workflow.Domain.Case.Task.EditDescriptionTask
+namespace Workflow.Domain.Case.Task.UpdateTask
 {
-    public class EditDescriptionTaskDomain : RomBaseDomain
+    public class UpdateTaskDomain : RomBaseDomain
     {        
         [RequiredGuid(ErrorMessage = "Id is required")]
         public Guid Id { get; set; }

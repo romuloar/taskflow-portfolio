@@ -1,11 +1,11 @@
-﻿using Workflow.Domain.Case.Task.GetTask;
+﻿using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Repository;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Repository;
 using Rom.Result.Domain;
 using Rom.Result.Extensions;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
 {
     public class GetTaskByIdProvider : BaseRepository<TaskDomain>, IGetTaskByIdProvider
     {

@@ -6,6 +6,6 @@ namespace Workflow.Application.Case.Task.ChangeStatusToInProgress
 {
     public interface IChangeStatusToInProgressApplication
     {
-        Task<ResultDetail<TaskDomain>> Execute(Guid id);
+        Task<ResultDetail<TaskDomain>> ExecuteAsync(Guid id);
     }
 }

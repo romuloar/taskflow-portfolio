@@ -1,23 +1,17 @@
-﻿using Workflow.Domain.Case.Task.EditDescriptionTask;
+﻿using Workflow.Domain.Case.Task.UpdateTask;
 using Workflow.Domain.Entities.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Repository;
-using Microsoft.EntityFrameworkCore;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Repository;
 using Rom.Result.Domain;
 using Rom.Result.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Provider.Task
 {
-    public class EditDescriptionTaskProvider : BaseRepository<TaskDomain>, IEditDescriptionTaskProvider
+    public class UpdateTaskProvider : BaseRepository<TaskDomain>, IUpdateTaskProvider
     {
-        public EditDescriptionTaskProvider(WorkflowDbContext context) : base(context) { }        
+        public UpdateTaskProvider(WorkflowDbContext context) : base(context) { }        
 
-        public async Task<ResultDetail<TaskDomain>> EditDescriptionTaskAsync(EditDescriptionTaskDomain param)
+        public async Task<ResultDetail<TaskDomain>> UpdateTaskAsync(UpdateTaskDomain param)
         {
             try
             {

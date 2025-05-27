@@ -1,6 +1,6 @@
 ﻿using Workflow.Domain.Entities.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Repository;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Repository

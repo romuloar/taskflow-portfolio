@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Config;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Context
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context
 {
     public class WorkflowDbContext : DbContext
     {
@@ -21,6 +22,7 @@ namespace Infra.Adapter.Data.EntityFrameworkCore.Context
         {
             // Apply configurations from the assembly
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkflowDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new TaskDomainConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

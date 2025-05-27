@@ -1,22 +1,22 @@
-﻿using Workflow.Domain.Case.Task.EditDescriptionTask;
+﻿using Workflow.Domain.Case.Task.UpdateTask;
 using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Provider.Task;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Provider.Task;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Provider.TaskTest
 {
-    public class EditDescriptionTaskProviderTest
+    public class UpdateTaskProviderTest
     {
         /// <summary>
-        /// Creates a new instance of EditDescriptionTaskProvider with the given context.
+        /// Creates a new instance of UpdateTaskProvider with the given context.
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        private EditDescriptionTaskProvider CreateProvider(WorkflowDbContext context)
+        private UpdateTaskProvider CreateProvider(WorkflowDbContext context)
         {
-            return new EditDescriptionTaskProvider(context);
+            return new UpdateTaskProvider(context);
         }
 
         /// <summary>
@@ -32,11 +32,11 @@ namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Provider.TaskTest
         }
 
         /// <summary>
-        /// Tests that the EditDescriptionTaskProvider updates the description of an existing task and returns a success result.
+        /// Tests that the UpdateTaskProvider updates the description of an existing task and returns a success result.
         /// </summary>
         /// <returns></returns>
         [Fact]
-        public async Task EditDescriptionAsync_Should_Update_Description_And_Return_Success_Result()
+        public async Task UpdateTaskAsync_Should_Update_Description_And_Return_Success_Result()
         {
             using var context = CreateContext();
             var provider = CreateProvider(context);
@@ -51,13 +51,13 @@ namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Provider.TaskTest
             context.Tasks.Add(task);
             await context.SaveChangesAsync();
 
-            var editTask = new EditDescriptionTaskDomain
+            var editTask = new UpdateTaskDomain
             {
                 Id = task.Id,
                 Description = "New Description"
             };
             
-            var result = await provider.EditDescriptionTaskAsync(editTask);
+            var result = await provider.UpdateTaskAsync(editTask);
 
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.ResultData);
@@ -70,21 +70,21 @@ namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Provider.TaskTest
         }
 
         /// <summary>
-        /// Tests that the EditDescriptionTaskProvider returns an error when trying to edit a task that does not exist.
+        /// Tests that the UpdateTaskProvider returns an error when trying to edit a task that does not exist.
         /// </summary>
         /// <returns></returns>
         [Fact]
-        public async Task EditDescriptionAsync_Should_Return_NotFound_When_Task_Does_Not_Exist()
+        public async Task UpdateTaskAsync_Should_Return_NotFound_When_Task_Does_Not_Exist()
         {
             using var context = CreateContext();
             var provider = CreateProvider(context);
-            var editTask = new EditDescriptionTaskDomain
+            var editTask = new UpdateTaskDomain
             {
                 Id = Guid.NewGuid(),
                 Description = "Any Description"
             };
 
-            var result = await provider.EditDescriptionTaskAsync(editTask);
+            var result = await provider.UpdateTaskAsync(editTask);
 
             Assert.False(result.IsSuccess);
             Assert.Null(result.ResultData);

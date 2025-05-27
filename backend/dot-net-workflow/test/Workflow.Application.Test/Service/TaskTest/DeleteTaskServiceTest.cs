@@ -1,5 +1,5 @@
 ﻿using Workflow.Application.Case.Task.DeleteTask;
-using Workflow.Application.Case.Task.GetTask;
+using Workflow.Application.Case.Task.GetTaskById;
 using Workflow.Application.Case.TaskNotification.NotifyTaskDeleted;
 using Application.Service.Task.DeleteTask;
 using Workflow.Domain.Case.TaskNotification.NotifyTaskDeleted;
@@ -14,14 +14,14 @@ namespace Application.Test.Service.TaskTest
     public class DeleteTaskServiceTest
     {
         private readonly Mock<IDeleteTaskApplication> _deleteTaskAppMock;
-        private readonly Mock<IGetTaskApplication> _getTaskAppMock;
+        private readonly Mock<IGetTaskByIdApplication> _getTaskAppMock;
         private readonly Mock<INotifyTaskDeletedApplication> _notifyTaskDeletedAppMock;
         private readonly DeleteTaskService _service;
 
         public DeleteTaskServiceTest()
         {
             _deleteTaskAppMock = new Mock<IDeleteTaskApplication>();
-            _getTaskAppMock = new Mock<IGetTaskApplication>();
+            _getTaskAppMock = new Mock<IGetTaskByIdApplication>();
             _notifyTaskDeletedAppMock = new Mock<INotifyTaskDeletedApplication>();
             _service = new DeleteTaskService(
                 _deleteTaskAppMock.Object,
@@ -43,7 +43,7 @@ namespace Application.Test.Service.TaskTest
             // Assert
             Assert.False(result.IsSuccess);
             Assert.Equal("Task not found", result.Message);
-            _deleteTaskAppMock.Verify(x => x.Execute(It.IsAny<Guid>()), Times.Never);
+            _deleteTaskAppMock.Verify(x => x.ExecuteAsync(It.IsAny<Guid>()), Times.Never);
             _notifyTaskDeletedAppMock.Verify(x => x.Execute(It.IsAny<NotifyTaskDeletedDomain>()), Times.Never);
         }
 
@@ -54,7 +54,7 @@ namespace Application.Test.Service.TaskTest
             var id = Guid.NewGuid();
             var task = new TaskDomain { Id = id, Description = "desc", Status = EnumTaskStatus.New };
             _getTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(task.GetResultDetailSuccess());
-            _deleteTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(ResultDetailExtensions.GetError<bool>("Delete failed"));
+            _deleteTaskAppMock.Setup(x => x.ExecuteAsync(id)).ReturnsAsync(ResultDetailExtensions.GetError<bool>("Delete failed"));
 
             // Act
             var result = await _service.Execute(id);
@@ -72,7 +72,7 @@ namespace Application.Test.Service.TaskTest
             var id = Guid.NewGuid();
             var task = new TaskDomain { Id = id, Description = "desc", Status = EnumTaskStatus.New };
             _getTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(task.GetResultDetailSuccess());
-            _deleteTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(true.GetResultDetailSuccess());
+            _deleteTaskAppMock.Setup(x => x.ExecuteAsync(id)).ReturnsAsync(true.GetResultDetailSuccess());
 
             // Act
             var result = await _service.Execute(id);
@@ -90,7 +90,7 @@ namespace Application.Test.Service.TaskTest
             var id = Guid.NewGuid();
             var task = new TaskDomain { Id = id, Description = "desc", Status = EnumTaskStatus.Done };
             _getTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(task.GetResultDetailSuccess());
-            _deleteTaskAppMock.Setup(x => x.Execute(id)).ReturnsAsync(true.GetResultDetailSuccess());
+            _deleteTaskAppMock.Setup(x => x.ExecuteAsync(id)).ReturnsAsync(true.GetResultDetailSuccess());
             _notifyTaskDeletedAppMock.Setup(x => x.Execute(It.IsAny<NotifyTaskDeletedDomain>()))
                 .ReturnsAsync(true.GetResultDetailSuccess());
 

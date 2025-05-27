@@ -1,15 +1,15 @@
-﻿using Workflow.Domain.Case.Task.GetTask;
+﻿using Workflow.Domain.Case.Task.GetTaskById;
 using Workflow.Domain.Entities.Task;
 using Rom.Result.Domain;
 using Rom.Result.Extensions;
 
-namespace Workflow.Application.Case.Task.GetTask
+namespace Workflow.Application.Case.Task.GetTaskById
 {
-    public class GetTaskApplication : IGetTaskApplication
+    public class GetTaskByIdApplication : IGetTaskByIdApplication
     {
         private readonly IGetTaskByIdProvider _provider;
 
-        public GetTaskApplication(IGetTaskByIdProvider provider)
+        public GetTaskByIdApplication(IGetTaskByIdProvider provider)
         {
             _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }

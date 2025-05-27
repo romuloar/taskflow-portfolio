@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Workflow.Domain.Generic.Task;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infra.Adapter.Data.EntityFrameworkCore.Config
+namespace Workflow.Infra.Adapter.Data.EntityFrameworkCore.Config
 {
     public class TaskDomainConfiguration : IEntityTypeConfiguration<TaskDomain>
     {
         public void Configure(EntityTypeBuilder<TaskDomain> builder)
         {
-            builder.ToTable("Task", "tsk");
+            builder.ToTable("Task");
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.Description)
@@ -22,7 +22,7 @@ namespace Infra.Adapter.Data.EntityFrameworkCore.Config
                 v => v == EnumTaskStatus.New ? "NEW" :
                      v == EnumTaskStatus.InProgress ? "IPR" :
                      v == EnumTaskStatus.Impediment ? "IMP" :
-                     v == EnumTaskStatus.Done ? "DON" :
+                     v == EnumTaskStatus.Done ? "DNE" :
                      "NEW",
                 v => v == "NEW" ? EnumTaskStatus.New :
                      v == "IPR" ? EnumTaskStatus.InProgress :

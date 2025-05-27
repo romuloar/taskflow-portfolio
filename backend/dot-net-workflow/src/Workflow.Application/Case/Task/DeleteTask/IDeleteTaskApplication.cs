@@ -5,6 +5,6 @@ namespace Workflow.Application.Case.Task.DeleteTask
 {
     public interface IDeleteTaskApplication
     {
-        Task<ResultDetail<bool>> Execute(Guid id);
+        Task<ResultDetail<bool>> ExecuteAsync(Guid id);
     }
 }

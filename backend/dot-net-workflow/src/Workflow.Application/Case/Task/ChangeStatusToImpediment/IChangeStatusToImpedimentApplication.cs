@@ -5,6 +5,6 @@ namespace Workflow.Application.Case.Task.ChangeStatusToImpediment
 {
     public interface IChangeStatusToImpedimentApplication
     {
-        Task<ResultDetail<TaskDomain>> Execute(Guid id);
+        Task<ResultDetail<TaskDomain>> ExecuteAsync(Guid id);
     }
 }

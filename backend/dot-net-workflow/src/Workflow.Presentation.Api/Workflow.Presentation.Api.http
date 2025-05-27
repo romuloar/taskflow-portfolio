@@ -1,0 +1,49 @@
+@Workflow.Presentation.Api_HostAddress = http://localhost:5000
+
+###
+# Add a new task
+POST {{Workflow.Presentation.Api_HostAddress}}/api/task/AddTask
+Content-Type: application/json
+
+{
+  "description": "Example task"
+}
+
+###
+# Get all tasks
+GET {{Workflow.Presentation.Api_HostAddress}}/api/task/GetAllTask
+
+###
+# Get a task by id
+GET {{Workflow.Presentation.Api_HostAddress}}/api/task/GetTaskById/{{taskId}}
+
+###
+# Update a task (description and/or status)
+PUT {{Workflow.Presentation.Api_HostAddress}}/api/task/UpdateTask
+Content-Type: application/json
+
+{
+  "id": "{{taskId}}",
+  "description": "Updated description",
+  "status": 1
+}
+
+###
+# Delete a task by id
+DELETE {{Workflow.Presentation.Api_HostAddress}}/api/task/DeleteTask/{{taskId}}
+
+###
+# Change task status to Done
+PUT {{Workflow.Presentation.Api_HostAddress}}/api/task/ChangeStatusToDone/{{taskId}}
+
+###
+# Change task status to Impediment
+PUT {{Workflow.Presentation.Api_HostAddress}}/api/task/ChangeStatusToImpediment/{{taskId}}
+
+###
+# Change task status to In Progress
+PUT {{Workflow.Presentation.Api_HostAddress}}/api/task/ChangeStatusToInProgress/{{taskId}}
+
+###
+# Change task status to In Progress
+GET {{Workflow.Presentation.Api_HostAddress}}/api/task/GetAllTask/

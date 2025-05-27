@@ -1,5 +1,5 @@
 ﻿using Workflow.Domain.Entities.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

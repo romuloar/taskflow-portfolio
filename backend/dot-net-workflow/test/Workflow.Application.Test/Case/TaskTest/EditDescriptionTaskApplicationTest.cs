@@ -1,5 +1,5 @@
-﻿using Workflow.Application.Case.Task.EditDescriptionTask;
-using Workflow.Domain.Case.Task.EditDescriptionTask;
+﻿using Workflow.Application.Case.Task.EditDescriptionTask.UpdateTask;
+using Workflow.Domain.Case.Task.UpdateTask;
 using Workflow.Domain.Entities.Task;
 using Moq;
 using Rom.Result.Extensions;
@@ -8,13 +8,13 @@ namespace Application.Test.Case.TaskTest
 {
     public class EditDescriptionTaskApplicationTest
     {
-        private readonly Mock<IEditDescriptionTaskProvider> _providerMock;
-        private readonly EditDescriptionTaskApplication _application;
+        private readonly Mock<IUpdateTaskProvider> _providerMock;
+        private readonly UpdateTaskApplication _application;
 
         public EditDescriptionTaskApplicationTest()
         {
-            _providerMock = new Mock<IEditDescriptionTaskProvider>();
-            _application = new EditDescriptionTaskApplication(_providerMock.Object);
+            _providerMock = new Mock<IUpdateTaskProvider>();
+            _application = new UpdateTaskApplication(_providerMock.Object);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Application.Test.Case.TaskTest
         public async Task Execute_ShouldReturnError_WhenParamIsInvalid()
         {
             // Arrange
-            var invalidDomain = new EditDescriptionTaskDomain { Id = Guid.NewGuid() };
+            var invalidDomain = new UpdateTaskDomain { Id = Guid.NewGuid() };
             // Assuming IsValidDomain is a property that determines if the domain is valid
             var domain = new TestEditDescriptionTaskDomain { Id = invalidDomain.Id, Description = invalidDomain.Description, IsValidDomain = true };
 
@@ -53,7 +53,7 @@ namespace Application.Test.Case.TaskTest
             var expectedResult = expectedTask.GetResultDetailSuccess();
 
             _providerMock
-                .Setup(p => p.EditDescriptionTaskAsync(validDomain))
+                .Setup(p => p.UpdateTaskAsync(validDomain))
                 .ReturnsAsync(expectedResult);
 
             // Act
@@ -62,11 +62,11 @@ namespace Application.Test.Case.TaskTest
             // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(expectedTask, result.ResultData);
-            _providerMock.Verify(p => p.EditDescriptionTaskAsync(validDomain), Times.Once);
+            _providerMock.Verify(p => p.UpdateTaskAsync(validDomain), Times.Once);
         }
 
-        // This class is used to simulate the behavior of the EditDescriptionTaskDomain for testing purposes.
-        private class TestEditDescriptionTaskDomain : EditDescriptionTaskDomain
+        // This class is used to simulate the behavior of the UpdateTaskDomain for testing purposes.
+        private class TestEditDescriptionTaskDomain : UpdateTaskDomain
         {
             public bool IsValidDomain { get; set; }
         }

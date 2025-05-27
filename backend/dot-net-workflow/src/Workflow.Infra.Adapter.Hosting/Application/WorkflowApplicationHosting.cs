@@ -10,6 +10,8 @@ namespace Infra.Adapter.Hosting.Application
         {
             // Registering Task Application Hosting
             services.AddTaskApplicationHosting();
+
+            // Registering Task Notification Application Hosting
             services.AddTaskNotificationApplication();
 
             // Registering Task Service Hosting

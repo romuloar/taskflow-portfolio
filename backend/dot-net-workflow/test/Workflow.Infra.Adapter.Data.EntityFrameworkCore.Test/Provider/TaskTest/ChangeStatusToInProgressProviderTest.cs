@@ -1,7 +1,7 @@
 ﻿using Workflow.Domain.Entities.Task;
 using Workflow.Domain.Generic.Task;
-using Infra.Adapter.Data.EntityFrameworkCore.Context;
-using Infra.Adapter.Data.EntityFrameworkCore.Provider.Task;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Context;
+using Workflow.Infra.Adapter.Data.EntityFrameworkCore.Provider.Task;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Adapter.Data.EntityFrameworkCore.Test.Provider.TaskTest

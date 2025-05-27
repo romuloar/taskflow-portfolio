@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Workflow.Application\Workflow.Application.csproj" />
     <ProjectReference Include="..\Workflow.Infra.Adapter.Data.EntityFrameworkCore\Workflow.Infra.Adapter.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Workflow.Infra.Adapter.Notification\Workflow.Infra.Adapter.Notification.csproj" />
   </ItemGroup>
 
 </Project>
