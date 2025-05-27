@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infra.Adapter.Data.EntityFrameworkCore\Infra.Adapter.Data.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>
